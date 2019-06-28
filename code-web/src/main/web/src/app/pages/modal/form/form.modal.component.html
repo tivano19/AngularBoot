@@ -1,0 +1,140 @@
+<p-toast [style]="{marginTop: '10px'}" position="top-center" key="tl"></p-toast>
+
+<div class="modal-header">
+    <h4 class="modal-title">My Form</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<form [formGroup]="myForm" class="form-group">
+    <div class="modal-boy">
+        <div class="container">
+
+            <div class="invisible">
+                <input type="hidden" formControlName="id"/>
+                <input type="hidden" formControlName="tplName"/>
+            </div>
+
+            <ng-template ngFor let-element [ngForOf]="dynamicModel" let-i="index">
+
+                <!-- Row: if index field === 3, new row -->
+                <div class="form-row mb-4" *ngIf="i % 3 === 0">
+                    <!-- Column count = 3 -->
+                    <ng-template ngFor let-col [ngForOf]="[0, 1, 2]" let-c="index">
+                        <!-- Column c -->
+                        <div class="col" *ngIf="dynamicModel[i+c] && dynamicModel[i+c].inputType !== 'hidden'">
+                            <!-- Label c -->
+                            <label for={{dynamicModel[i+c].name}}>{{dynamicModel[i+c].label}}</label>
+                            <!-- If field.type = "text" -->
+                            <div class="input-group"
+                                 *ngIf="dynamicModel[i+c] && dynamicModel[i+c].inputType === 'text'; else divOther">
+                                <input [readonly]="dynamicModel[i+c].options.get('readonly')"
+                                       type={{dynamicModel[i+c].inputType}} formControlName={{dynamicModel[i+c].name}}
+                                       class="form-control form-control-sm"
+                                       [ngClass]="{ 'is-invalid': fieldControl(dynamicModel[i+c].name).errors }"/>
+                                <div *ngIf="fieldControl(dynamicModel[i+c].name).errors" class="invalid-feedback">
+                                    <div *ngIf="fieldControl(dynamicModel[i+c].name).errors.required">
+                                        {{dynamicModel[i+c].label}} is required
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- If field.type != "text" -->
+                            <ng-template #divOther>
+                                <div class="input-group"
+                                     *ngIf="dynamicModel[i+c] && dynamicModel[i+c].inputType === 'date'; else divOtherTxt">
+                                    <!-- If field.type = "date" : DatePicker -->
+                                    <input type="text" placeholder="yyyy-mm-dd"
+                                           [disabled]="dynamicModel[i+c].options.get('disabled')"
+                                           formControlName={{dynamicModel[i+c].name}}
+                                           class="form-control form-control-sm"
+                                           [ngClass]="{ 'is-invalid': fieldControl(dynamicModel[i+c].name).errors }"
+                                           ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"/>
+                                    <div *ngIf="fieldControl(dynamicModel[i+c].name).errors" class="invalid-feedback">
+                                        <div *ngIf="fieldControl(dynamicModel[i+c].name).errors.required">
+                                            {{dynamicModel[i+c].label}} is required
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- If field.type = "textarea" : TextArea -->
+                                <ng-template #divOtherTxt>
+                                    <div class="input-group"
+                                         *ngIf="dynamicModel[i+c] && dynamicModel[i+c].inputType === 'textarea'">
+                                    <textarea rows="3"
+                                              formControlName={{dynamicModel[i+c].name}}
+                                              class="form-control form-control-sm"
+                                              [ngClass]="{ 'is-invalid': fieldControl(dynamicModel[i+c].name).errors }">
+                                    </textarea>
+                                        <div *ngIf="fieldControl(dynamicModel[i+c].name).errors"
+                                             class="invalid-feedback">
+                                            <div *ngIf="fieldControl(dynamicModel[i+c].name).errors.required">
+                                                {{dynamicModel[i+c].label}} is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+
+                            </ng-template>
+                            <!-- field.oldvalue -->
+                            <small class="form-text text-muted font-italic">Old value: {{dynamicModel[i+c].label}}.
+                            </small>
+                        </div>
+                    </ng-template>
+
+                </div>
+
+            </ng-template>
+
+
+        </div>
+    </div>
+
+    <!-- Line divider -->
+    <hr class="my-4">
+
+    <!-- Botton action -->
+    <div class="d-flex bd-highlight align-items-center" style="padding-left: 5px; padding-right: 5px;padding-top: 0px;">
+        <div class="p-1 bd-highlight">
+            <button class="btn btn-outline-dark btn-sm float-left" (click)="reset()">
+                Reset
+            </button>
+        </div>
+        <div class="p-1 bd-highlight">
+            <button class="btn btn-outline-dark btn-sm float-left" (click)="reset()">
+                Reset
+            </button>
+        </div>
+
+        <div class="p-1 flex-grow-1 bd-highlight">
+            <button class="btn btn-outline-dark btn-sm" (click)="reset()">
+                Reset
+            </button>
+        </div>
+
+        <div class="p-1 bd-highlight">
+            <button class="btn btn-outline-dark btn-sm float-righ"
+                    (click)="submitForm()">
+                Submit Form
+            </button>
+        </div>
+        <div class="p-1 bd-highlight">
+            <button class="btn btn-outline-dark btn-sm float-righ"
+                    (click)="submitForm()">
+                Submit Form
+            </button>
+        </div>
+        <div class="p-1 bd-highlight">
+            <button class="btn btn-outline-dark btn-sm float-righ"
+                    [disabled]="myForm.invalid"
+                    (click)="submitForm()">
+                Submit Form
+            </button>
+        </div>
+    </div>
+
+</form>
+
+
+

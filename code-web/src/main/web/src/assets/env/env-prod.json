@@ -1,0 +1,6 @@
+{
+  "name": "environement production",
+  "host": "localhost",
+  "port": "8080",
+  "contaxtPath": "/myapp2"
+}

@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="_activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body" [contextMenu]="basicMenu">
+    <ag-grid-angular
+            style="width: 100%; height: 300px;"
+            class="ag-theme-balham"
+            [gridOptions]="gridOptions"
+
+            enableFilter="true"
+            enableSorting
+            enableColResize
+            [rowSelection]="rowSelection"
+            [rowMultiSelectWithClick]="true"
+            [enableRangeSelection]="true"
+
+            (cellClicked)="copyToClipboard($event)"
+            (rowDoubleClicked)='onRowDoubleClicked($event)'
+            (gridReady)="onGridReady($event)"
+    >
+    </ag-grid-angular>
+</div>
+
+<context-menu [style]="{'z-index': '10', 'position': 'absolute'}">
+    <ng-template contextMenuItem >
+        <span id="myspan">Say hi!</span>
+    </ng-template>
+    <ng-template contextMenuItem >Copy</ng-template>
+</context-menu>

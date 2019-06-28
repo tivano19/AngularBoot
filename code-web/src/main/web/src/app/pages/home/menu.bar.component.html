@@ -1,0 +1,8 @@
+<p-menubar [model]="items">
+
+    <date-range (apply)="onApply($event)" #dateRange [wrapperDate]="wrapperDate" >
+    </date-range>
+
+    <input type="text" pInputText placeholder="Search" style="margin-left:.25em">
+    <button pButton label="Logout" icon="fa fa-sign-out"  style="margin-left:.25em"></button>
+</p-menubar>

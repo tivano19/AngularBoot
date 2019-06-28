@@ -1,0 +1,33 @@
+﻿<div class="full-grid">
+    <h1>Master-Detail Example</h1>
+
+    <menu-bar [gridOptions]="gridOptions" [cellValue]="cellValue"
+    #myMenuBar
+    >
+
+    </menu-bar>
+
+
+    <ag-grid-angular
+            style="width: 100%; height: 100%;"
+            #myGrid
+            class="ag-theme-balham"
+            [gridOptions]="gridOptions"
+            enableFilter="true"
+            enableSorting
+            enableColResize
+            rowSelection="multiple"
+            [suppressRowClickSelection]="true"
+            [isRowSelectable]="isRowSelectable"
+            [components]="components"
+            [frameworkComponents]="frameworkComponents"
+
+            (rowSelected)="onRowSelected($event)"
+
+            (cellClicked)="onCellSelected($event)"
+            (rowDoubleClicked)='onRowDoubleClicked($event)'
+            (gridReady)="onGridReady($event)"
+    >
+    </ag-grid-angular>
+</div>
+

@@ -1,0 +1,38 @@
+<div role="document" class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{title}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <p-dataTable [value]="data" expandableRows="true" styleClass="table">
+
+                <p-column expander="true" styleClass="col-icon"></p-column>
+                <p-column field="name" header="name" class="thead-light"></p-column>
+                <p-column field="size" header="size" class="thead-light"></p-column>
+                <p-column field="type" header="type"></p-column>
+                <ng-template let-car pTemplate="rowexpansion">
+                   <table class="table table-sm">
+                            <tbody>
+                            <ng-template ngFor let-element [ngForOf]="car.fils" let-i="index">
+                            <tr>
+                                <td style="width: 20%">{{element.nameF}} </td>
+                                <td style="width: 80%">: {{element.typeF}}</td>
+                            </tr>
+                            </ng-template>
+                            </tbody>
+                        </table>
+
+                </ng-template>
+            </p-dataTable>
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+    </div>
+</div>

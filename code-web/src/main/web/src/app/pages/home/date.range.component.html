@@ -1,0 +1,22 @@
+<p-calendar #myCalendar [(ngModel)]="wrapperDate.rangeDates" selectionMode="range" [readonlyInput]="true"
+            [numberOfMonths]="2" dateFormat="dd/mm/yy">
+
+    <p-footer>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-light btn-sm btn-block">Today</button>
+                <button type="button" class="btn btn-light btn-sm btn-block" (click)="nextDay($event)">Next Day</button>
+                <button type="button" class="btn btn-light btn-sm btn-block">This week</button>
+                <button type="button" class="btn btn-light btn-sm btn-block">This month</button>
+
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-light btn-sm btn-block" (click)="lastDay($event)">Yesterday</button>
+                <button type="button" class="btn btn-light btn-sm btn-block">Last week</button>
+                <button type="button" class="btn btn-light btn-sm btn-block">Last month</button>
+                <button type="button" class="btn btn-light btn-sm btn-block">Clear</button>
+                <button type="button" class="btn btn-light btn-sm btn-block" (click)="onApply()">Apply</button>
+            </div>
+        </div>
+    </p-footer>
+</p-calendar>
