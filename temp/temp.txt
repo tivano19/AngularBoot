@@ -1,0 +1,8 @@
+there are some differences in the csv export feature between the new Reflex GUI and the old GUI.
+Indeed, in the new Event Tab, the user has the possibility to search the events in database by some criteria (ex. payoff, event date, etc...).
+Once the events are displayed, the user will be able to filter the rows, and sort them.
+the CSV Export feature allows you to export only the displayed lines and in sort order.
+in the Event Legacy tab, the export button allows to opens a modal and fill the criteria in order to retrieve the rows in the database.
+the new behavior of the GUI Reflex, is much faster: it avoids us to make a second request to recover the data and to gain in performance.
+Is the behavior of new export feature suitable for you?
+If you agree with this new csv export behavior, we will fix the bug of the csv file format when deleting a line in excel and we will deliver the fix at the next release.
