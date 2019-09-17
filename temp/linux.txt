@@ -65,6 +65,9 @@ commande1 >> /dossier/resultat.log : redirige et contacte avec l'ancien log
 pipe : prendre STDOUT d'une commande et la faire renvoyé vers la STDIN d'une autre commande
 Args : prend la sortie de STDOUT et la convertir en arguments d'une STDIN (utilisé dans pipe)
 
-tar -czvf fichier1.tar.gz ./dossier1 : créer, compresser gzip algo, visuel, fichier fichier1.tar.gz du contenu du dossier 1
+tar -czvf fichier1.tar.gz . : créer fichier1.tar.gz à partir du repertoire courant, compresser gzip algo, visuel, fichier fichier1.tar.gz du contenu du dossier 1
+tar -czvf ./dossier1/fichier1.tar.gz . : créer fichier1.tar.gz à partir du repertoire courant dans le sous repertoire dossier1 
 tar -tzvf fichier1.tar.gz : visualiser sans decompresser le contenu du fichier.tar.gz
 tar -xzvf fichier1.tar.gz : extraire le contenu du ficher gz dans le repertoire courant.
+tar -xzvf fichier1.tar.gz /dossier : extraire le contenu du ficher gz dans le repertoire dossier.
+
